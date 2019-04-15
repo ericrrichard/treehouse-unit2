@@ -10,12 +10,16 @@ const students = studentList.children;
 const itemsPerPage = 10;
 let currentPage = 1;
 
+// Display all of the students for the selected page and hide all of the 
+// other students.
 function showPage( list, page ) {
 
-    console.log( "Showing page: " + page );
     let currentPageNum = 1;
     let itemOnPage = 1;
     for ( let i = 0; i < students.length; i++ ) {
+
+	// Show the students for the selected page and hide
+	// the students on all other pages.
 	if ( currentPageNum === page ) {
 	    students[ i ].style.display = "";
 	}
@@ -32,13 +36,7 @@ function showPage( list, page ) {
     }
 }
 
-
-
-
-/*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
-***/
+// Create the pagination links at the bottom of the page.
 function appendPageLinks( students ) {
 
     // Find the page div to append to.
@@ -51,10 +49,11 @@ function appendPageLinks( students ) {
     let ul = document.createElement( "ul" );
     div.appendChild( ul );
 
+    // Loop through the students keeping track of both 
+    // the student we are on and the page they go on.
     for ( let startingStudent = 1, pageNum = 1; 
 	  startingStudent < students.length;
 	  startingStudent += itemsPerPage, pageNum++ ) {
-
 	
 	let li = document.createElement( "li" );
 	
@@ -76,6 +75,7 @@ function appendPageLinks( students ) {
 
 }
 
+// Helper function to handle changing which page is selected on click.
 function changeCurrentPage( e ) {
     
     // Figure out which link was clicked
@@ -100,7 +100,7 @@ function changeCurrentPage( e ) {
     }
 }
 
-
+// Initialize by showing the initial students and adding the links.
 showPage( students, currentPage );
 appendPageLinks( students );
 
